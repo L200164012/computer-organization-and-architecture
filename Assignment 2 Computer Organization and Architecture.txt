@@ -18,7 +18,7 @@
 				0	 1	A + M, Arithmetic Shift Right
  				1	 0	A - M, Arithmetic Shift Right
 				1  	 1	Arithmetic Shift Right
-0111 1000
+
 
 	1. 10 x (-12) = (-120)
 	   A = 00000 , Q = 01010, Q(-1) = 0, M = 10100
