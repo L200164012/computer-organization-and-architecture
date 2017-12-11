@@ -1,0 +1,72 @@
+	      Assignment Computer Organization and Architecture
+		by : Wahyu Purnama Widya Leksana (L200164012)
+
+	Using Booth's Algorithm do the simulation of multiplcation from these number :
+	1. 10 x (-12)
+	2. (-10) x (-12)
+	3. 10 x 12	
+	
+	Answer :
+		-> 10 		= 0xA = 01010
+		-> 12 		= 0xC = 01100
+	    Using two complement :
+		-> (-10)	= 0x6 = 10110 
+		-> (-12)	= 0x4 = 10100
+	    Booth's Rule :     Q(0)	Q(1)	Operation
+				0	 0 	Arithmetic Shift Right
+				0	 1	A + M, Arithmetic Shift Right
+ 				1	 0	A - M, Arithmetic Shift Right
+				1  	 1	Arithmetic Shift Right
+0111 1000
+
+	1. 10 x (-12) = (-120)
+	   A = 00000 , Q = 01010, Q(-1) = 0, M = 10100
+      	       Step |	  A	  Q	Q(-1)	|  M		Operation
+	       -----|---------------------------|--------
+		0   |	00000	01010	  0	|10100		Initialize
+		1   |	00000	00101	  0	|10100		Arithmetic Shift Right
+		2   |	01100	00101	  0	|10100		A - M		
+		    |	00110	00010	  1	|10100		Arithmetic Shift Right
+		3   |	11010	00010	  1	|10100		A + M
+		    |	11101	00000	  1	|10100		Arithmetic Shift Right
+		4   |	10001	00000	  1	|10100		A + M
+		    |	11000	10000	  0	|10100		Arithmetic Shift Right
+		5   |	11100	01000	  0	|10100		Arithmetic Shift Right
+
+		So the answer is 11100 01000(10 bits) = -120 decimal			
+		
+
+
+	2. (-10) x (-12) = (120)
+	   A = 00000 , Q = 10110, Q(-1) = 0, M = 10100
+	       Step |	  A	  Q	Q(-1)	|  M		Operation
+	       -----|---------------------------|-------
+		0   |	00000	10110	  0	|10100		Initialize
+		1   |	00000	01011	  0	|10100		Arithmetic Shift Right
+		2   |	01100	01011	  0	|10100		A - M
+		    |	00110	00101	  1	|10100		Arithmetic Shift Right
+		3   |	00011	00010	  1	|10100		Arithmetic Shift Right
+		4   |	10111	00010	  1	|10100		A + M
+		    |	11011	10001	  0	|10100		Arithmetic Shift Right
+		5   |	00111	10001	  0	|10100		A - M
+		    |	00011	11000	  1	|10100		Arithmetic Shift Right
+		
+		So the answer is 00011 11000(10 bits) = 120 decimal
+
+
+
+	3. 10 x 12 = 120
+	   A = 00000 , Q = 01010, Q(-1) = 0, M = 01100 
+	       Step	  A	  Q	Q(-1)	  M		Operation
+		0	00000	01010	  0	01100		Initialize
+		1	00000	00101	  0	01100		Arithmetic Shift Right
+		2	10100	00101	  0	01100		A - M
+			11010	00010	  1	01100		Arithmetic Shift Right
+		3	00110	00010	  1	01100		A + M
+			00011	00001	  0	01100		Arithmetic Shift Right
+		4	10111	00001	  0	01100		A - M
+			11011	10000	  1	01100		Arithmetic Shift Right
+		5	00111	10000	  1	01100		A + M
+			00011	11000	  0	01100		Arithmetic Shift Right
+
+		So the answer is 00011 11000(10 bits) = 120 decimal
