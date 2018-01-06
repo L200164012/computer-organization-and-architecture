@@ -1,0 +1,73 @@
+	     Assignment II Computer Organization and Architecture
+		by : Wahyu Purnama Widya Leksana (L200164012)
+
+	Question :
+	Calculate A/B and B/A using binary number operation : 
+		A = 7	B = -3
+	
+	Answer :
+		A = 0111
+		B = 1101 
+
+
+	*) A/B =
+		Step|	  A	  Q	|  M		Operation
+	       -----|-------------------|-------------------------
+		0   |	0000	0111	|1101		Initialize
+		1   |	0000	1110	|1101		Arithmetic Shift Left				
+		    |	0011	1110	|1101		A-M		
+		    |	0011	1111	|1101		Q(0)=1
+		2   |	0111	1110	|1101		Arithmetic Shift Left
+		    |	1010	1110	|1101		A-M
+		    |	0111	1110	|1101		Q(0)=0, A+M
+		3   |	1111	1100	|1101		Arithmetic Shift Left
+		    |	0010	1110	|1101		A-M
+		    |	0010	1111	|1101		Q(0)=1
+		4   |	0101	1110	|1101		Arithmetic Shift Left
+		    |	1000	1110	|1101		A-M
+		    |	0101	1110	|1101		Q(0)=0, A+M
+		The result is -2 : 1110 with remainder 0001
+
+					or
+				     ____
+		divisor	<-	0011/0111	= 10	-> Quotient		
+				     011
+				     ---
+				       01	-> remainder
+		Because A is positive and B is negative so the result is 1110 with remainder 0001
+
+
+
+
+	*) B/A =
+		Step|	  A	  Q	|  M		Operation
+	       -----|-------------------|-------------------------
+		0   |	0000	1101	|0111		Initialize
+		1   |	0001	1010	|0111		Arithmetic Shift Left				
+		    |	1010	1010	|0111		A-M		
+		    |	1010	1011	|0111		Q(0)=1
+		2   |	0101	0110	|0111		Arithmetic Shift Left
+		    |	1110	0110	|0111		A-M
+		    |	0101	0110	|0111		Q(0)=0, A+M
+		3   |	1010	1100	|0111		Arithmetic Shift Left
+		    |	1011	1100	|0111		A-M
+		    |	1010	1100	|0111		Q(0)=0, A+M
+		4   |	0101	1000	|0111		Arithmetic Shift Left
+		    |	1110	1000	|0111		A-M
+		    |	0101	1000	|0111		Q(0)=0, A+M
+		The result is negative zero : 1000 or 0000
+
+					or
+				     ____
+		divisor	<-	0111/0011	= 0	-> Quotient	
+
+		Because A is positive and B is negative so the result is 0000			
+		
+
+
+
+
+
+
+
+
